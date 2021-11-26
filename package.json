@@ -1,0 +1,26 @@
+{
+  "name": "api-rest",
+  "version": "1.0.0",
+  "description": "Exemplo de API de Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorbarrilhas/node-example-api.git"
+  },
+  "keywords": [
+    "node",
+    "rest-api"
+  ],
+  "author": "Victor Barrilhas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorbarrilhas/node-example-api/issues"
+  },
+  "homepage": "https://github.com/victorbarrilhas/node-example-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
