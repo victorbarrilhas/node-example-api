@@ -10,8 +10,15 @@ router.get('/', (request, response, next) => {
 
 // INSERE UM PRODUTO
 router.post('/', (request, response, next) => {
+
+    const produto = {
+        nome: request.body.nome,
+        preco: request.body.preco,
+    }
+
     response.status(201).send({
-        mensagem: 'Usando o POST dentro da roda de produtos'
+        mensagem: 'Insere um Produto',
+        produtoCriado: produto
     });
 });
 
