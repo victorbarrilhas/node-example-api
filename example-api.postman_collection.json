@@ -6,10 +6,83 @@
 	},
 	"item": [
 		{
-			"name": "RETORNA TODOS OS PRODUTOS",
+			"name": "OBTEM TODOS OS PRODUTOS",
 			"request": {
 				"method": "GET",
 				"header": [],
+				"url": {
+					"raw": "localhost:3000/produtos",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OBTEM PRDUITO POR ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/produtos/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"produtos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALTERA UM PRODUTO",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_produto\" : 10,\r\n    \"nome\" : \"Death Stranding\",\r\n    \"preco\" : 99.90  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/produtos",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETA UM PRODUTO",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_produto\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:3000/produtos",
 					"host": [
@@ -28,61 +101,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": {
-					"raw": "localhost:3000/produtos",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"produtos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "RETORNA OS DADOS DE UM PRODUTO",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/produtos/value",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"produtos",
-						"value"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ALTERA UM PRODUTO",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/produtos",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"produtos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "EXCLUI UM PRODUTO",
-			"request": {
-				"method": "DELETE",
-				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:3000/produtos",
 					"host": [
