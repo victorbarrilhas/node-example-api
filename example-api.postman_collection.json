@@ -49,7 +49,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id_produto\" : 10,\r\n    \"nome\" : \"Death Stranding\",\r\n    \"preco\" : 99.90  \r\n}",
+					"raw": "{\r\n    \"id_produto\" : 1,\r\n    \"nome\" : \"Death Stranding\",\r\n    \"preco\" : 99.90  \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id_produto\": 10\r\n}",
+					"raw": "{\r\n    \"id_produto\": 11\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"nome\": \"The Witcher 3\",\r\n    \"preco\": 39.90\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
