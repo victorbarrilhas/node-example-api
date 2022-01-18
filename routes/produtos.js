@@ -84,7 +84,7 @@ router.get("/:id_produto", (req, res, next) => {
                 }
                 if (result.length == 0) {
                     return res.status(404).send({
-                        mensagem: "Não foi encontrado produto com este ID",
+                        mensagem: "Produto não encontrado",
                     });
                 }
                 const response = {
