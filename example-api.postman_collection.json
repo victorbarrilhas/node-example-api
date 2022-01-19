@@ -7,9 +7,21 @@
 	"item": [
 		{
 			"name": "OBTEM TODOS OS PRODUTOS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:3000/produtos",
 					"host": [
