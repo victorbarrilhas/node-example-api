@@ -7,6 +7,27 @@
 	"item": [
 		{
 			"name": "OBTEM TODOS OS PRODUTOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Retorna status 200 e um vetor de produtos', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an('object');\r",
+							"\r",
+							"    pm.expect(responseJson.quantidade).to.be.an('number');\r",
+							"    pm.expect(responseJson.produtos).to.be.an('array');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
