@@ -6,6 +6,166 @@
 	},
 	"item": [
 		{
+			"name": "Testes",
+			"item": [
+				{
+					"name": "CRIAÇÃO DE NOVO USUARIO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test ('Deve retornar 201 e mensagem de Usuario criado quando passivo de usuario ser criado', function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    pm.expect(responseJson.usuarioCriado).to.be.an('number');\r",
+									"    pm.expect(responseJson.email).to.be.an('string');\r",
+									"\r",
+									"    \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"vbarrilhas.dev@gmail.com\",\r\n    \"senha\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuarios/cadastro",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CRIAÇÃO DE USUARIO DUPLICADO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test ('Deve retornar 409 e mensagem de Usuario já cadastrado quando for duplicado', function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    pm.expect(responseJson.mensagem).to.be.an('string');\r",
+									"    pm.expect(responseJson.mensagem).to.be.equal('Usuário já cadastrado');\r",
+									"    \r",
+									"\r",
+									"    \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"vbarrilhas.dev@gmail.com\",\r\n    \"senha\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuarios/cadastro",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CRIAÇÃO DE USUARIO VAZIA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test ('Deve retornar 500 e mensagem de Erro', function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"\r",
+									"    pm.expect(responseJson.error).to.be.an ('null');\r",
+									"    pm.expect(responseJson.error).to.be.equal(null);\r",
+									"    \r",
+									"\r",
+									"    \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/usuarios/cadastro",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"cadastro"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "OBTEM TODOS OS PRODUTOS",
 			"event": [
 				{
@@ -224,6 +384,34 @@
 					"port": "3000",
 					"path": [
 						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRIAÇÃO DE USUARIO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"victor.barrilhas@gmail.com\",\r\n    \"senha\" : \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/usuarios/cadastro",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"cadastro"
 					]
 				}
 			},
