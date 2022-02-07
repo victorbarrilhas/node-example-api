@@ -238,6 +238,16 @@
 		{
 			"name": "ALTERA UM PRODUTO",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxLCJlbWFpbCI6InZpY3Rvci5iYXJyaWxoYXNAZ21haWwuY29tIiwiaWF0IjoxNjQ0MjQ3MTY5LCJleHAiOjE2NDQyNTA3Njl9.7MxWD0bwANzJ-JCb-EggHN8htse4c2JZdnI0Ga8cxMA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
@@ -265,6 +275,16 @@
 		{
 			"name": "DELETA UM PRODUTO",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxLCJlbWFpbCI6InZpY3Rvci5iYXJyaWxoYXNAZ21haWwuY29tIiwiaWF0IjoxNjQ0MjQ3MTY5LCJleHAiOjE2NDQyNTA3Njl9.7MxWD0bwANzJ-JCb-EggHN8htse4c2JZdnI0Ga8cxMA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -292,11 +312,37 @@
 		{
 			"name": "INSERE UM PRODUTO",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxLCJlbWFpbCI6InZpY3Rvci5iYXJyaWxoYXNAZ21haWwuY29tIiwiaWF0IjoxNjQ0MjQ3MTY5LCJleHAiOjE2NDQyNTA3Njl9.7MxWD0bwANzJ-JCb-EggHN8htse4c2JZdnI0Ga8cxMA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nome\": \"The Witcher 3\",\r\n    \"preco\": 39.90\r\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome",
+							"value": "Horizon Forbiden West",
+							"type": "text"
+						},
+						{
+							"key": "preco",
+							"value": "349.90",
+							"type": "text"
+						},
+						{
+							"key": "produto_imagem",
+							"type": "file",
+							"src": "/D:/DOWNLOADS/horizon FW.jpg"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
