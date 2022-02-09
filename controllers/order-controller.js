@@ -1,41 +1,41 @@
 const mysql = require("../mysql").pool;
 
-exports.getPedidos = (req, res, next) => {
+exports.getOrders = (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({ error: error });
         }
         conn.query(
-            `SELECT pedidos.id_pedido,
-                           pedidos.quantidade,
-                           produtos.id_produto,
-                           produtos.nome,
-                           produtos.preco
-                      FROM pedidos
-                INNER JOIN produtos
-                        ON produtos.id_produto = pedidos.id_produto;`,
+            `SELECT orders.orderId,
+                            orders.quantity,
+                            products.productId,
+                            products.name,
+                            products.price
+                       FROM orders
+                 INNER JOIN products
+                         ON products.productId = orders.productId;`,
             (error, result, fields) => {
                 if (error) {
                     return res.status(500).send({ error: error });
                 }
                 const response = {
-                    pedidos: result.map((pedido) => {
+                    orders: result.map((order) => {
                         return {
-                            id_pedido: pedido.id_pedido,
-                            quantidade: pedido.quantidade,
-                            produto: {
-                                id_produto: pedido.id_produto,
-                                nome: pedido.nome,
-                                preco: pedido.preco,
+                            orderId: order.orderId,
+                            quantity: order.quantity,
+                            product: {
+                                productId: order.productId,
+                                name: order.name,
+                                price: order.price,
                             },
                             request: {
-                                tipo: "GET",
-                                descricao:
+                                type: "GET",
+                                description:
                                     "Retorna os detalhes de um pedido específico",
                                 url:
                                     process.env.URL_API +
-                                    "pedidos/" +
-                                    pedido.id_pedido, //ToDo: extrair para variavel de ambiente.
+                                    "orders/" +
+                                    order.orderId,
                             },
                         };
                     }),
@@ -46,41 +46,41 @@ exports.getPedidos = (req, res, next) => {
     });
 };
 
-exports.postPedidos = (req, res, next) => {
+exports.postOrder = (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({ error: error });
         }
         conn.query(
-            "SELECT * FROM produtos WHERE id_produto = ?",
-            [req.body.id_produto],
+            "SELECT * FROM products WHERE productId = ?",
+            [req.body.productId],
             (error, result, field) => {
                 if (error) {
                     return res.status(500).send({ error: error });
                 }
                 if (result.length == 0) {
                     return res.status(404).send({
-                        mensagem: "Produto não encontrado",
+                        message: "Produto não encontrado",
                     });
                 }
                 conn.query(
-                    "INSERT INTO pedidos (id_produto, quantidade) VALUES (?,?)",
-                    [req.body.id_produto, req.body.quantidade],
+                    "INSERT INTO orders (productId, quantity) VALUES (?,?)",
+                    [req.body.productId, req.body.quantity],
                     (error, result, field) => {
                         conn.release();
                         if (error) {
                             return res.status(500).send({ error: error });
                         }
                         const response = {
-                            mensagem: "Pedido inserido com sucesso",
-                            pedidoCriado: {
-                                id_pedido: result.id_pedido,
-                                id_produto: req.body.id_produto,
-                                quantidade: req.body.quantidade,
+                            message: "Pedido inserido com sucesso",
+                            createdOrder: {
+                                orderId: result.insertId,
+                                productId: req.body.productId,
+                                quantity: req.body.quantity,
                                 request: {
-                                    tipo: "GET",
-                                    descricao: "Retorna todos os pedidos",
-                                    url: process.env.URL_API + "pedidos/",
+                                    type: "GET",
+                                    description: "Retorna todos os pedidos",
+                                    url: process.env.URL_API + "orders",
                                 },
                             },
                         };
@@ -92,60 +92,63 @@ exports.postPedidos = (req, res, next) => {
     });
 };
 
-exports.getUmPedido = (req, res, next) => {
+exports.getOrderDetail = (req, res, next) => {
     mysql.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({ error: error });
         }
         conn.query(
-            "SELECT * FROM pedidos WHERE id_pedido = ?;",
-            [req.params.id_pedido],
+            "SELECT * FROM orders WHERE orderId = ?;",
+            [req.params.orderId],
             (error, result, fields) => {
                 if (error) {
                     return res.status(500).send({ error: error });
                 }
                 if (result.length == 0) {
                     return res.status(404).send({
-                        mensagem: "Não foi encontrado pedido com este ID",
+                        message: "Não foi encontrado pedido com este ID",
                     });
                 }
                 const response = {
-                    pedido: {
-                        id_pedido: result[0].id_pedido,
-                        id_produto: result[0].id_produto,
-                        quantidade: result[0].quantidade,
+                    order: {
+                        orderId: result[0].orderId,
+                        productId: result[0].productId,
+                        quantity: result[0].quantity,
                         request: {
-                            tipo: "GET",
-                            descricao: "Retorna todos os pedidos",
-                            url: process.env.URL_API + "pedidos/",
+                            type: "GET",
+                            description: "Retorna todos os pedidos",
+                            url: process.env.URL_API + "orders",
                         },
                     },
                 };
-
                 return res.status(200).send(response);
             }
         );
     });
 };
 
-exports.deletePedido = (req, res, next) => {
+exports.deleteOrder = (req, res, next) => {
     mysql.getConnection((error, conn) => {
+        if (error) {
+            return res.status(500).send({ error: error });
+        }
         conn.query(
-            `DELETE FROM pedidos WHERE id_pedido = ?`,
-            [req.body.id_pedido],
+            `DELETE FROM orders WHERE orderId = ?`,
+            [req.params.orderId],
             (error, result, field) => {
                 conn.release();
                 if (error) {
                     return res.status(500).send({ error: error });
                 }
                 const response = {
-                    mensagem: "Pedido removido com sucesso",
+                    message: "Pedido removido com sucesso",
                     request: {
-                        tipo: "POST",
-                        url: process.env.URL_API + "pedidos/",
+                        type: "POST",
+                        description: "Insere um pedido",
+                        url: process.env.URL_API + "orders",
                         body: {
-                            id_produto: "Number",
-                            quantidade: "Number",
+                            productId: "Number",
+                            quantity: "Number",
                         },
                     },
                 };
