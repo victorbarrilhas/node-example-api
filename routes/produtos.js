@@ -44,4 +44,13 @@ router.get("/:id_produto", ProdutosController.getUmProduto);
 router.patch("/", login.obrigatorio, ProdutosController.updateProduto);
 router.delete("/", login.obrigatorio, ProdutosController.deleteProduto);
 
+router.post(
+    "/:id_produto/imagem",
+    login.obrigatorio,
+    upload.single("produto_imagem"),
+    ProdutosController.postImagem
+);
+
+router.get("/:id_produto/imagens", ProdutosController.getImagens);
+
 module.exports = router;
